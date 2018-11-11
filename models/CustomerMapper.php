@@ -15,8 +15,6 @@ use Yii;
  * @property string $address
  * @property int $status
  * @property int $create_time
- * User: lmh
- * Date: 2018/11/11
  */
 Class CustomerMapper extends \yii\elasticsearch\ActiveRecord
 {

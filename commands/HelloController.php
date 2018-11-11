@@ -21,13 +21,10 @@ class HelloController extends Controller
 {
     /**
      * This command echoes what you have entered as the message.
-     * @param string $message the message to be echoed.
      * @return void Exit code
      */
-    public function actionIndex($message = 'hello world')
+    public function actionIndex()
     {
-        CustomerMapper::createIndex();
-
         $time = time();
         $faker = \Faker\Factory::create(str_replace('-', '_', 'Zh-cn'));
         for ($i = 0; $i < 100; $i++) {
@@ -41,7 +38,7 @@ class HelloController extends Controller
             $mapper->address = $faker->address;
             $mapper->status = 1;
             $mapper->create_time = $time;
-            $result = $mapper->save();
+            $mapper->save();
             $time += 43200;
             $this->stdout('插入----' . $i . "\n");
         }
