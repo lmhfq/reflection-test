@@ -28,12 +28,14 @@ class HelloController extends Controller
         $time = time();
         $faker = \Faker\Factory::create(str_replace('-', '_', 'Zh-cn'));
         for ($i = 0; $i < 100; $i++) {
+            $company = $faker->company;
             $mapper = new CustomerMapper();
             $mapper->primaryKey = time() . '-' . $i;
             $mapper->customer_id = $i;
             $mapper->staff_id = 1;
             $mapper->customer_name = $faker->name;
-            $mapper->company_name = $faker->company;
+            $mapper->company_name = $company;
+            $mapper->sp_company_name = $company;
             $mapper->tel = $faker->phoneNumber;
             $mapper->address = $faker->address;
             $mapper->status = 1;

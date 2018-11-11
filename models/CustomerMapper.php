@@ -10,6 +10,7 @@ use Yii;
  * @property int $customer_id
  * @property int $staff_id
  * @property string $company_name
+ * @property string $sp_company_name
  * @property string $customer_name
  * @property string $tel
  * @property string $address
@@ -43,7 +44,8 @@ Class CustomerMapper extends \yii\elasticsearch\ActiveRecord
                 'properties' => [
                     'customer_id' => ['type' => 'integer'],
                     'staff_id' => ['type' => 'integer'],
-                    'company_name' => ['type' => 'keyword'],
+                    'company_name' => ['type' => 'keyword'],//不分词公司名称
+                    'sp_company_name' => ['type' => 'text'],//分词公司名称
                     'customer_name' => ['type' => 'keyword'],
                     'tel' => ['type' => 'keyword'],
                     'address' => ['type' => 'keyword'],
