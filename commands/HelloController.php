@@ -42,7 +42,7 @@ class HelloController extends Controller
             $mapper->create_time = $time;
             $mapper->save();
             $time += 43200;
-            $this->stdout('插入----' . $i . "\n");
+            $this->stdout('插入第-' . $i . "条\n");
         }
     }
 }
