@@ -27,6 +27,7 @@ Class CustomerMapper extends \yii\elasticsearch\ActiveRecord
             'staff_id',
             'company_name',
             'customer_name',
+			'sp_company_name',
             'tel',
             'address',
             'status',
