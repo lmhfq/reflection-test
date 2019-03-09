@@ -9,6 +9,7 @@ namespace app\controllers;
 
 
 use app\components\dependencies\ClassFactory;
+use app\components\factory\MessageFactory;
 use app\components\proxy\Client;
 use app\models\Circle;
 use app\models\User;
@@ -107,8 +108,17 @@ class IndexController extends Controller
         var_export($userService->getUserInfo(104));
     }
 
-    public function actionProxy()
+    /**
+     * @author lmh
+     * @throws \yii\base\UserException
+     */
+    public function actionFactory()
     {
+        $obj=MessageFactory::getInstance('sms');
+        $obj->send();
+    }
+
+    public function actionFactoryReflection(){
 
     }
 }
