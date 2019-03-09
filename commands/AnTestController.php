@@ -3,8 +3,6 @@ declare(strict_types=1);
 /**
  * Created by PhpStorm.
  * User: lmh <lmh@weiyian.com>
- * Date: 2019/2/15
- * Time: 14:29
  */
 
 namespace app\commands;
