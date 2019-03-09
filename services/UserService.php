@@ -14,10 +14,11 @@ class UserService
     /**
      * @author lmh
      * @Logger("我是日志")
+     * @param int $id
+     * @return array
      */
-    public function getUser()
+    public function getUserInfo(int $id): array
     {
-
-
+        return [$id . '员工'];
     }
 }

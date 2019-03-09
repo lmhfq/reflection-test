@@ -9,8 +9,10 @@ namespace app\controllers;
 
 
 use app\components\dependencies\ClassFactory;
+use app\components\proxy\Client;
 use app\models\Circle;
 use app\models\User;
+use app\services\UserService;
 use ReflectionClass;
 use yii\base\Module;
 use yii\web\Controller;
@@ -95,6 +97,14 @@ class IndexController extends Controller
         var_dump($area);
 
 
+    }
+
+    public function actionRequest(){
+        /**
+         * @var $userService UserService
+         */
+        $userService = new Client(UserService::class);
+        var_export($userService->getUserInfo(104));
     }
 
     public function actionProxy()
