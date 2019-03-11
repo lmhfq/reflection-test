@@ -136,7 +136,7 @@ class IndexController extends Controller
     }
 
     /**
-     * 代理
+     * 代理模式-动态代理
      * @author lmh
      */
     public function actionRequest()
@@ -145,7 +145,7 @@ class IndexController extends Controller
          * @var $userService UserService
          */
         $userService = new \app\components\proxy\Client(UserService::class);
-        var_export($userService->getUserInfo(104));
+        var_dump($userService->getUserInfo(104));
     }
 
     /**
