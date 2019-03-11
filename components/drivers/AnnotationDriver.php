@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace app\components\drivers;
 
 use app\components\annotations\Logger;
-use app\components\annotations\MyAnnotation;
 use Doctrine\Annotations\AnnotationReader;
 use Doctrine\Annotations\Reader;
 
