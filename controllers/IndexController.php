@@ -16,6 +16,8 @@ use app\components\strategy\AStrategy;
 use app\components\strategy\BStrategy;
 use app\components\strategy\Context;
 use app\models\Circle;
+use app\models\Point;
+use app\models\Request;
 use app\models\User;
 use app\services\UserService;
 use Doctrine\Annotations\AnnotationException;
@@ -116,26 +118,29 @@ class IndexController extends Controller
 
 
     /**
-     * 反射注解应用
-     * @Logger("我是日志")
-     */
-    public function actionAnnotation()
-    {
-        var_dump('dsd');
-    }
-
-    /**
      * 依赖注入应用
      * @throws \ReflectionException
      */
     public function actionDependencies()
     {
+
+        $circle = new Circle(new Request(),new Point());
+
         /**
          * @var Circle $circle
          */
         $circle = ClassFactory::make(Circle::class);
         $area = $circle->area();
         var_dump($area);
+    }
+
+    /**
+     * 反射注解应用
+     * @Logger("我是日志")
+     */
+    public function actionAnnotation()
+    {
+        var_dump('dsd');
     }
 
     /**
