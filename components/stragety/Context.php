@@ -22,7 +22,6 @@ class Context
      */
     public static function getInstance($name)
     {
-
         try {
             $reflect = new \ReflectionClass($name);
             /** @var StrategyInterface $instance */

@@ -66,4 +66,19 @@ class AnnotationDriver
             }
         }
     }
+
+    /**
+     * @param $class
+     * @param $name
+     * @throws \ReflectionException
+     */
+    public function loadMetadataForMethod($class, $name): void
+    {
+        $annotations = $this->reader->getMethodAnnotations(new \ReflectionMethod($class, $name));
+        foreach ($annotations as $annotation) {
+            if ($annotation instanceof Logger) {
+                $annotation->logger();
+            }
+        }
+    }
 }

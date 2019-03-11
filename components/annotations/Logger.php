@@ -23,6 +23,6 @@ final class Logger
 
     public function logger()
     {
-        echo $this->value . "-----------------";
+        echo $this->value . "--------";
     }
 }
