@@ -9,9 +9,13 @@ namespace app\controllers;
 
 
 use app\components\annotations\Logger;
+use app\components\decorator\Car;
+use app\components\decorator\Person;
 use app\components\dependencies\ClassFactory;
 use app\components\drivers\AnnotationDriver;
 use app\components\factory\MessageFactory;
+use app\components\proxy\Proxy;
+use app\components\proxy\Student;
 use app\components\strategy\AStrategy;
 use app\components\strategy\BStrategy;
 use app\components\strategy\Context;
@@ -124,7 +128,7 @@ class IndexController extends Controller
     public function actionDependencies()
     {
 
-        $circle = new Circle(new Request(),new Point());
+        $circle = new Circle(new Request(), new Point());
 
         /**
          * @var Circle $circle
@@ -132,6 +136,17 @@ class IndexController extends Controller
         $circle = ClassFactory::make(Circle::class);
         $area = $circle->area();
         var_dump($area);
+    }
+
+    /**
+     * 装饰器模式
+     * @author lmh
+     */
+    public function actionDecorate()
+    {
+        $person = new Person();
+        $car = new Car($person);
+        $car->display();
     }
 
     /**
@@ -149,6 +164,11 @@ class IndexController extends Controller
      */
     public function actionRequest()
     {
+//
+//        $subject = new Student("张三");
+//        $proxy = new Proxy($subject);
+//        $proxy->say();
+
         /**
          * @var $userService UserService
          */
