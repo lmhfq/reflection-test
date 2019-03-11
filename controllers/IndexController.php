@@ -97,7 +97,7 @@ class IndexController extends Controller
         } else {
             throw new UserException('暂无');
         }
-        $strategy->show();
+        echo $strategy->show();
 
     }
 
@@ -108,8 +108,9 @@ class IndexController extends Controller
     public function actionStrategyReflection()
     {
         $a = 'A';
+//        $strategy = Context::getInstance('app\\components\\strategy\\' . $a . 'Strategy');
         $strategy = Context::getInstance($a);
-        $strategy->show();
+        echo $strategy->show();
     }
 
     /**
@@ -122,7 +123,7 @@ class IndexController extends Controller
     }
 
     /**
-     * 反射依赖注入应用
+     * 依赖注入应用
      * @throws \ReflectionException
      */
     public function actionDependencies()
@@ -133,10 +134,15 @@ class IndexController extends Controller
         $circle = ClassFactory::make(Circle::class);
         $area = $circle->area();
         var_dump($area);
+    }
+
+    public function actionDependenciesReflection()
+    {
 
     }
 
     /**
+     * 代理
      * @author lmh
      */
     public function actionRequest()

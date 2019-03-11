@@ -2,9 +2,7 @@
 declare(strict_types=1);
 /**
  * Created by PhpStorm.
- * User: lmh <lmh@weiyian.com>
- * Date: 2019/3/11
- * Time: 9:55
+ * User: lmh <lmh@weiyian.com>¬
  */
 
 namespace app\components\strategy;
@@ -14,6 +12,11 @@ use yii\base\UserException;
 
 class Context
 {
+    public static $command = [
+        'A' => AStrategy::class,
+        'B' => BStrategy::class,
+    ];
+
     /**
      * @author lmh
      * @param $name
@@ -23,6 +26,12 @@ class Context
     public static function getInstance($name)
     {
         try {
+//            if (!self::$command[$name]) {
+//                throw new UserException('不存在:' . $name);
+//            }
+//            $name = self::$command[$name];
+
+
             $reflect = new \ReflectionClass($name);
             /** @var StrategyInterface $instance */
             $instance = $reflect->newInstance();
