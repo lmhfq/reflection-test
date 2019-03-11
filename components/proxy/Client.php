@@ -2,16 +2,15 @@
 
 namespace app\components\proxy;
 
+use ReflectionClass;
+
 /**
  * Created by PhpStorm.
  * User: lmh
  */
 class Client
 {
-    private $url;
     private $service;
-
-    private $gataway = 'https://oa2.ruishan666.com/_sale/';
 
     /**
      * Client constructor.
@@ -22,11 +21,25 @@ class Client
         $this->service = $service;
     }
 
+    /**
+     * @author lmh
+     * @param $action
+     * @param $arguments
+     * @throws \ReflectionException
+     */
     public function __call($action, $arguments)
     {
-
-
-
+        $ref = new ReflectionClass($this->service);
+        if ($ref->hasMethod($action)) {
+            $method = $ref->getMethod($action);
+            if ($method->isPublic() && !$method->isAbstract() && count($arguments)) {
+                if ($method->isStatic()) {
+                    $method->invoke(null, $arguments);
+                } else {
+                    $method->invoke($this->service, $arguments);
+                }
+            }
+        }
     }
 
 }

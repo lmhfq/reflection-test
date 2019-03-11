@@ -136,11 +136,6 @@ class IndexController extends Controller
         var_dump($area);
     }
 
-    public function actionDependenciesReflection()
-    {
-
-    }
-
     /**
      * 代理
      * @author lmh

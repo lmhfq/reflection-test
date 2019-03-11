@@ -35,6 +35,7 @@ class Context
             $reflect = new \ReflectionClass($name);
             /** @var StrategyInterface $instance */
             $instance = $reflect->newInstance();
+
             return $instance;
         } catch (\ReflectionException $e) {
             throw new UserException('不存在:' . $name);
