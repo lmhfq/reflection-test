@@ -13,6 +13,7 @@ use app\components\dependencies\ClassFactory;
 use app\components\drivers\AnnotationDriver;
 use app\components\factory\MessageFactory;
 use app\components\strategy\AStrategy;
+use app\components\strategy\BStrategy;
 use app\components\strategy\Context;
 use app\models\Circle;
 use app\models\User;
@@ -52,7 +53,6 @@ class IndexController extends Controller
     {
         $user = new User();
         $ref = new ReflectionClass(User::class);
-        var_dump($ref->getMethods());
 
         $method = $ref->getMethod('setName');
         $method->invoke($user, 'zhangshan');
@@ -90,14 +90,15 @@ class IndexController extends Controller
 //        }
 
         $a = 'A';
+        $context = new Context();
         if ($a == 'A') {
-            $strategy = new AStrategy();
+            $context->setStrategy(new AStrategy());
         } elseif ($a == 'B') {
-            $strategy = new AStrategy();
+            $context->setStrategy(new BStrategy());
         } else {
             throw new UserException('暂无');
         }
-        echo $strategy->show();
+        echo $context->show();
 
     }
 
@@ -108,10 +109,11 @@ class IndexController extends Controller
     public function actionStrategyReflection()
     {
         $a = 'A';
-//        $strategy = Context::getInstance('app\\components\\strategy\\' . $a . 'Strategy');
-        $strategy = Context::getInstance($a);
+        $strategy = Context::getInstance('app\\components\\strategy\\' . $a . 'Strategy');
+        //$strategy = Context::getInstance($a);
         echo $strategy->show();
     }
+
 
     /**
      * 反射注解应用

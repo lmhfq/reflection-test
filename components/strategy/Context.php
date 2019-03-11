@@ -12,6 +12,25 @@ use yii\base\UserException;
 
 class Context
 {
+    /**
+     * @var StrategyInterface
+     */
+    private $strategy;
+
+    public function setStrategy(StrategyInterface $strategy)
+    {
+        $this->strategy = $strategy;
+    }
+
+    /**
+     * @author lmh
+     */
+    public function show()
+    {
+        return $this->strategy->show();
+    }
+
+
     public static $command = [
         'A' => AStrategy::class,
         'B' => BStrategy::class,
@@ -30,7 +49,6 @@ class Context
 //                throw new UserException('不存在:' . $name);
 //            }
 //            $name = self::$command[$name];
-
 
             $reflect = new \ReflectionClass($name);
             /** @var StrategyInterface $instance */
