@@ -29,6 +29,7 @@ class Client
      * @return mixed
      * @throws \ReflectionException
      * @throws UserException
+     *
      */
     public function __call($action, $arguments)
     {
@@ -37,14 +38,17 @@ class Client
             throw new UserException('方法不存在');
         }
         $method = $ref->getMethod($action);
-        if ($method->isPublic() && !$method->isAbstract() && count($arguments)) {
+        if (!$method->isPublic() && (!$method->isAbstract() && count($arguments))) {
             throw new UserException('方法不存在');
         }
+        //执行之前增加日志
+        echo "------" . time();
         if ($method->isStatic()) {
             return $method->invoke(null, ...$arguments);
         } else {
             return $method->invoke($ref->newInstance(), ...$arguments);
         }
+
     }
 
 }
