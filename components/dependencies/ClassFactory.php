@@ -12,7 +12,6 @@ use ReflectionClass;
  */
 class ClassFactory
 {
-
     /**
      * @param string $class
      * @return object
@@ -27,8 +26,8 @@ class ClassFactory
             return new $class;
         }
 
-        $parameters = $constructor->getParameters();
-        $instances = self::resolveDependencies($parameters);
+        $dependencies  = $constructor->getParameters();
+        $instances = self::resolveDependencies($dependencies);
         return $reflector->newInstanceArgs($instances);
 
     }
@@ -47,14 +46,9 @@ class ClassFactory
                 if ($parameter->isDefaultValueAvailable()) {
                     $dependencies[] = $parameter->getDefaultValue();
                 } else {
-                    // //不是可选参数的为了简单直接赋值为字符串0
-                    //                //针对构造方法的必须参数这个情况
-                    //                //laravel是通过service provider注册closure到IocContainer,
-                    //                //在closure里可以通过return new Class($param1, $param2)来返回类的实例
-                    //                //然后在make时回调这个closure即可解析出对象
+                    //有默认值的 暂不说明 具体可以参考 yii  laravel的底层
                     $dependencies[] = '6666';
                 }
-
             } else {
                 //递归解析出依赖类的对象
                 $dependencies[] = self::make($parameter->getClass()->name);
@@ -62,5 +56,4 @@ class ClassFactory
         }
         return $dependencies;
     }
-
 }
