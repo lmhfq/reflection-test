@@ -12,7 +12,6 @@ use app\components\annotations\Logger;
 use app\components\dependencies\ClassFactory;
 use app\components\drivers\AnnotationDriver;
 use app\components\factory\MessageFactory;
-use app\components\proxy\Client;
 use app\components\strategy\AStrategy;
 use app\components\strategy\Context;
 use app\models\Circle;
@@ -145,7 +144,7 @@ class IndexController extends Controller
         /**
          * @var $userService UserService
          */
-        $userService = new Client(UserService::class);
+        $userService = new \app\components\proxy\Client(UserService::class);
         var_export($userService->getUserInfo(104));
     }
 

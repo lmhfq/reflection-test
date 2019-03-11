@@ -22,7 +22,7 @@
         "guzzlehttp/guzzle": "^6.3",
         "netresearch/jsonmapper": "^1.4",
         "react/http": "^0.8.4",
-        "doctrine/annotations": "2.0.x-dev"
+        "doctrine/annotations": "2.0.x-dev",
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
