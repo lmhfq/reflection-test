@@ -57,6 +57,7 @@ class IndexController extends Controller
         $method = $ref->getMethod('setName');
         $method->invoke($user, 'zhangshan');
 
+        //执行私有方法
         $method = $ref->getMethod('getName');
         $method->setAccessible(true);
         $data = $method->invoke($user);

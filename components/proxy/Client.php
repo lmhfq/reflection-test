@@ -48,7 +48,6 @@ class Client
         } else {
             return $method->invoke($ref->newInstance(), ...$arguments);
         }
-
     }
 
 }
