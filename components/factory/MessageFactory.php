@@ -45,7 +45,7 @@ class MessageFactory
      */
     public static function geReflection($mes_type)
     {
-        $reflection = new ReflectionClass($mes_type . 'Factory');
+        $reflection = new ReflectionClass('\\app\\components\\factory\\reflection\\'.$mes_type . 'Factory');
         /**
          * @var \app\components\factory\reflection\MessageFactory $factory
          */

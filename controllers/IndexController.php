@@ -196,7 +196,7 @@ class IndexController extends Controller
     public function actionFactoryReflection()
     {
         try {
-            $obj = MessageFactory::geReflection('sms');
+            $obj = MessageFactory::geReflection('Sms');
             $obj->send();
         } catch (\ReflectionException $e) {
         }
