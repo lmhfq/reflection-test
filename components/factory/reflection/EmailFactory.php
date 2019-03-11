@@ -13,7 +13,8 @@ namespace app\components\factory\reflection;
 use EmailMessage;
 
 class EmailFactory extends MessageFactory {
-    public function get_instance()
+
+    public function getInstance()
     {
         return new EmailMessage();
     }

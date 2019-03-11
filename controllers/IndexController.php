@@ -8,14 +8,20 @@ declare(strict_types=1);
 namespace app\controllers;
 
 
+use app\components\annotations\Logger;
 use app\components\dependencies\ClassFactory;
 use app\components\factory\MessageFactory;
 use app\components\proxy\Client;
+use app\components\strategy\AStrategy;
+use app\components\strategy\Context;
 use app\models\Circle;
 use app\models\User;
 use app\services\UserService;
+use EmailMessage;
 use ReflectionClass;
+use SmsMessage;
 use yii\base\Module;
+use yii\base\UserException;
 use yii\web\Controller;
 
 class IndexController extends Controller
@@ -32,7 +38,8 @@ class IndexController extends Controller
     public function __construct(string $id, Module $module, array $config = [])
     {
         parent::__construct($id, $module, $config);
-        $res = new ReflectionClass(IndexController::class);
+        var_dump(\Yii::$app->controller->action->id);
+
     }
 
 
@@ -59,24 +66,46 @@ class IndexController extends Controller
 
     /**
      * 策略模式理解
+     * @throws UserException
      */
     public function actionStrategy()
     {
+//        if(a){
+//            //dosomething
+//        }else if(b){
+//            //doshomething
+//        }else if(c){
+//            //doshomething
+//        } else{
+//            ////doshomething
+//        }
 
+        $a = 'A';
+        if ($a == 'a') {
+            $strategy = new AStrategy();
+        } elseif ($a == 'b') {
+            $strategy = new AStrategy();
+        } else {
+            throw new UserException('暂无');
+        }
+        $strategy->show();
 
     }
 
     /**
      * 反射改造策略模式应用
+     * @throws UserException
      */
     public function actionStrategyReflection()
     {
-
-
+        $a = 'A';
+        $strategy = Context::getInstance($a);
+        $strategy->show();
     }
 
     /**
      * 反射注解应用
+     * @Logger("我是日志")
      */
     public function actionAnnotation()
     {
@@ -84,8 +113,7 @@ class IndexController extends Controller
     }
 
     /**
-     * 反射代理应用
-     *
+     * 反射依赖注入应用
      * @throws \ReflectionException
      */
     public function actionDependencies()
@@ -97,10 +125,13 @@ class IndexController extends Controller
         $area = $circle->area();
         var_dump($area);
 
-
     }
 
-    public function actionRequest(){
+    /**
+     * @author lmh
+     */
+    public function actionRequest()
+    {
         /**
          * @var $userService UserService
          */
@@ -109,16 +140,48 @@ class IndexController extends Controller
     }
 
     /**
+     * 发送消息普通方式
+     * @author lmh
+     * @throws UserException
+     */
+    public function actionMessage()
+    {
+        $mes_type = 'Sms';
+
+        switch ($mes_type) {
+            case 'Sms':
+                $obj = new SmsMessage();
+                break;
+            case 'Email':
+                $obj = new EmailMessage();
+                break;
+            default:
+                throw new UserException('NO Message Type Found');
+        }
+        $obj->send();
+    }
+
+    /**
+     * 发送消息-工厂方式改造
      * @author lmh
      * @throws \yii\base\UserException
      */
     public function actionFactory()
     {
-        $obj=MessageFactory::getInstance('sms');
+        $obj = MessageFactory::getInstance('sms');
         $obj->send();
     }
 
-    public function actionFactoryReflection(){
-
+    /**
+     * 利用反射-改造工厂方式
+     * @author lmh
+     */
+    public function actionFactoryReflection()
+    {
+        try {
+            $obj = MessageFactory::geReflection('sms');
+            $obj->send();
+        } catch (\ReflectionException $e) {
+        }
     }
 }

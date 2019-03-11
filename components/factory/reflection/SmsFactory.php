@@ -13,7 +13,7 @@ use SmsMessage;
 
 class SmsFactory extends MessageFactory
 {
-    public function get_instance()
+    public function getInstance()
     {
         return new SmsMessage();
     }

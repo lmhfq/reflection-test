@@ -10,6 +10,13 @@ declare(strict_types=1);
 namespace app\components\factory\reflection;
 
 
-abstract class MessageFactory{
-    abstract public function get_instance();
+use MessageInterface;
+
+abstract class MessageFactory
+{
+    /**
+     * @author lmh
+     * @return MessageInterface
+     */
+    abstract public function getInstance();
 }
