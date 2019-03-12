@@ -59,7 +59,6 @@ class Application
             $class_name = $dependenci->getClass();
             // 获取变量的名字
             $var_name = $dependenci->getName();
-
             // 如果是对象， 则递归new
             if (array_key_exists($var_name, $parameters)) {
                 $actual_parameters[] = $parameters[$var_name];

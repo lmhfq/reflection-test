@@ -11,6 +11,7 @@ namespace app\controllers;
 use app\components\annotations\Logger;
 use app\components\decorator\Car;
 use app\components\decorator\Person;
+use app\components\dependencies\Application;
 use app\components\dependencies\ClassFactory;
 use app\components\drivers\AnnotationDriver;
 use app\components\factory\MessageFactory;
@@ -128,12 +129,12 @@ class IndexController extends Controller
     public function actionDependencies()
     {
 
-        $circle = new Circle(new Request(), new Point());
+        //$circle = new Circle(new Request(), new Point());
 
         /**
          * @var Circle $circle
          */
-        $circle = ClassFactory::make(Circle::class);
+        $circle = Application::make(Circle::class);
         $area = $circle->area();
         var_dump($area);
     }
