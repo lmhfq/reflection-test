@@ -24,6 +24,7 @@ use app\models\Circle;
 use app\models\Point;
 use app\models\Request;
 use app\models\User;
+use app\services\ProductService;
 use app\services\UserService;
 use Doctrine\Annotations\AnnotationException;
 use EmailMessage;
@@ -175,8 +176,17 @@ class IndexController extends Controller
         /**
          * @var $userService UserService
          */
-        $userService = new \app\components\proxy\Client(UserService::class);
-        var_dump($userService->getUserInfo(104));
+//        $userService = new \app\components\proxy\Client(UserService::class);
+//        var_dump($userService->getUserInfo(104));
+
+        try {
+            /**
+             * @var $productService ProductService
+             */
+            $productService = new \app\components\proxy\Request(ProductService::class);
+            $productService->list();
+        } catch (UserException $e) {
+        }
     }
 
     /**
