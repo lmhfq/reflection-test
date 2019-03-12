@@ -46,8 +46,7 @@ class Request
         $app = $ref->getConstant('APP');
         $headers = [];
         $url = $this->gateway . $app . strtolower($service . '/' . $action . '.json');
-        $response = $client->request('GET', $url,
-            ['headers' => $headers, 'query' => $arguments]);
+        $response = $client->request('GET', $url, ['headers' => $headers, 'query' => $arguments]);
         $content = $response->getBody()->getContents();
         return json_decode($content, true);
     }
