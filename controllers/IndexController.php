@@ -141,12 +141,14 @@ class IndexController extends Controller
     /**
      * 装饰器模式
      * @author lmh
+     * @\app\components\annotations\Car()
      */
     public function actionDecorate()
     {
         $person = new Person();
-        $car = new Car($person);
-        $car->display();
+        $person->display();
+        // $car = new Car($person);
+        // $car->display();
     }
 
     /**

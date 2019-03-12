@@ -1,5 +1,6 @@
 <?php
 declare(strict_types=1);
+
 namespace app\components\decorator;
 /**
  * Created by PhpStorm.

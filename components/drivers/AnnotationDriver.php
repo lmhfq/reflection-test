@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace app\components\drivers;
 
 use app\components\annotations\Logger;
+use app\components\decorator\Component;
 use Doctrine\Annotations\AnnotationReader;
 use Doctrine\Annotations\Reader;
 
@@ -77,6 +78,8 @@ class AnnotationDriver
         foreach ($annotations as $annotation) {
             if ($annotation instanceof Logger) {
                 $annotation->logger();
+            } elseif ($annotation instanceof Component) {
+                $annotation->display();
             }
         }
     }
