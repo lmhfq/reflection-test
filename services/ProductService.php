@@ -9,7 +9,7 @@ namespace app\services;
 
 interface ProductService
 {
-    const APP = '_cms';
+    const APP = '_cms/api/';
 
-    public function list();
+    public function list(): array;
 }

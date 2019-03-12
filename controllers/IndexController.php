@@ -184,7 +184,8 @@ class IndexController extends Controller
              * @var $productService ProductService
              */
             $productService = new \app\components\proxy\Request(ProductService::class);
-            $productService->list();
+            $list = $productService->list();
+           var_dump($list);
         } catch (UserException $e) {
         }
     }

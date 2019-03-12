@@ -8,27 +8,22 @@ declare(strict_types=1);
 namespace app\components\proxy;
 
 
+use ReflectionClass;
 use yii\base\UserException;
 
 class Request
 {
-    private $url;
     private $service;
 
-    private $gataway='http://oa2.ruishan666.com/';
+    private $gateway = 'http://oa2.ruishan666.com/';
+
     /**
      * Client constructor.
      * @param $service
-     * @throws UserException
      */
     public function __construct($service)
     {
-        if (array_key_exists($service, $this->config)) {
-            $this->url = $this->config[$service];
-            $this->service = $service;
-        } else {
-            throw new UserException('请求方法不存在');
-        }
+        $this->service = $service;
     }
 
     /**
@@ -37,12 +32,20 @@ class Request
      * @param $arguments
      * @return mixed
      * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \ReflectionException
+     * @throws UserException
      */
     public function __call($action, $arguments)
     {
+        $ref = new ReflectionClass($this->service);
+        if (!$ref->hasMethod($action)) {
+            throw new UserException('方法不存在');
+        }
         $client = new \GuzzleHttp\Client();
+        $service = substr($ref->getShortName(), 0, -7);
+        $app = $ref->getConstant('APP');
         $headers = [];
-        $url = $this->url . '/' . $this->service . '/' . $action . 'json';
+        $url = $this->gateway . $app . strtolower($service . '/' . $action . '.json');
         $response = $client->request('GET', $url,
             ['headers' => $headers, 'query' => $arguments]);
         $content = $response->getBody()->getContents();
