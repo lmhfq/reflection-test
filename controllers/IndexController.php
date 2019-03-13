@@ -129,7 +129,7 @@ class IndexController extends Controller
     public function actionDependencies()
     {
 
-        $circle = new Circle(new Request());
+       // $circle = new Circle(new Request());
 
         /**
          * @var Circle $circle
