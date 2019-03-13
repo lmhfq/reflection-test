@@ -14,26 +14,11 @@ class Circle
      */
     public $radius;
 
-    /**
-     * @var Point
-     */
-    public $center;
-
     const PI = 3.14;
 
-    public function __construct(Request $request, Point $point)
+    public function __construct(Request $request)
     {
         $this->radius = $request->get('radius');
-        $this->center = $point;
-    }
-
-    /**
-     * 打印圆点的坐标
-     * @author lmh
-     */
-    public function printCenter()
-    {
-        printf('center coordinate is (%d, %d)', $this->center->x, $this->center->y);
     }
 
     /**
