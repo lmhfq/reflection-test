@@ -17,9 +17,9 @@ class Proxy implements Person
 
     /**
      * Proxy constructor.
-     * @param Student $obj
+     * @param Person $obj
      */
-    public function __construct(Student $obj)
+    public function __construct(Person $obj)
     {
         $this->obj = $obj;
     }
@@ -29,7 +29,7 @@ class Proxy implements Person
      */
     public function say()
     {
-        echo '----------';
+        echo '实际操作之前执行的方法-----';
         $this->obj->say();
     }
 }
