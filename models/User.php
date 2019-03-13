@@ -10,7 +10,6 @@ namespace app\models;
 
 class User
 {
-
     private $name;
 
     public function setName($name)

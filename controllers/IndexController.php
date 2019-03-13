@@ -70,7 +70,7 @@ class IndexController extends Controller
         $method->setAccessible(true);
         $data = $method->invoke($user);
 
-        var_dump($data);
+        var_dump($ref->getMethods());
 
 
         $m = new \ReflectionMethod(User::class, 'getName');
@@ -87,17 +87,16 @@ class IndexController extends Controller
      */
     public function actionStrategy()
     {
-//        if($a == 'a'){
-//            //dosomething
-//        }else if($a == 'b'){
-//            //doshomething
-//        }else if($a == 'c'){
-//            //doshomething
-//        } else{
-//            ////doshomething
-//        }
-
         $a = 'A';
+        if ($a == 'A') {
+            //dosomething
+        } else if ($a == 'B') {
+            //doshomething
+        } else {
+            //doshomething
+        }
+
+
         $context = new Context();
         if ($a == 'A') {
             $context->setStrategy(new AStrategy());
@@ -185,7 +184,7 @@ class IndexController extends Controller
              */
             $productService = new \app\components\proxy\Request(ProductService::class);
             $list = $productService->list();
-           var_dump($list);
+            var_dump($list);
         } catch (UserException $e) {
         }
     }
