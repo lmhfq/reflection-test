@@ -89,11 +89,11 @@ class IndexController extends Controller
     {
         $a = 'A';
         if ($a == 'A') {
-            //dosomething
+            echo 'a';
         } else if ($a == 'B') {
-            //doshomething
+            echo 'b';
         } else {
-            //doshomething
+            echo '暂无';
         }
 
 
