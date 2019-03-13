@@ -32,12 +32,15 @@ class Request
      * @param $arguments
      * @return mixed
      * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \ReflectionException
      * @throws UserException
      */
     public function __call($action, $arguments)
     {
-        $ref = new ReflectionClass($this->service);
+        try {
+            $ref = new ReflectionClass($this->service);
+        } catch (\ReflectionException $e) {
+            throw new UserException('服务不存在');
+        }
         if (!$ref->hasMethod($action)) {
             throw new UserException('方法不存在');
         }
