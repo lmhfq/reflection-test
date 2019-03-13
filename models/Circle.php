@@ -12,12 +12,12 @@ class Circle
     /**
      * @var int
      */
-    public $radius;//半径
+    public $radius;
 
     /**
      * @var Point
      */
-    public $center;//圆心点
+    public $center;
 
     const PI = 3.14;
 
@@ -27,13 +27,20 @@ class Circle
         $this->center = $point;
     }
 
-    //打印圆点的坐标
+    /**
+     * 打印圆点的坐标
+     * @author lmh
+     */
     public function printCenter()
     {
         printf('center coordinate is (%d, %d)', $this->center->x, $this->center->y);
     }
 
-    //计算圆形的面积
+    /**
+     * 计算圆形的面积
+     * @author lmh
+     * @return float
+     */
     public function area()
     {
         return 3.14 * pow($this->radius, 2);
