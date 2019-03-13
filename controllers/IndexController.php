@@ -177,7 +177,7 @@ class IndexController extends Controller
          */
 //        $userService = new \app\components\proxy\Client(UserService::class);
 //        var_dump($userService->getUserInfo(104));
-exit;
+        exit;
         try {
             /**
              * @var $productService ProductService
