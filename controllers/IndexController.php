@@ -129,7 +129,7 @@ class IndexController extends Controller
     public function actionDependencies()
     {
 
-       // $circle = new Circle(new Request());
+        $circle = new Circle(new Request());
 
         /**
          * @var Circle $circle
@@ -167,10 +167,10 @@ class IndexController extends Controller
      */
     public function actionRequest()
     {
-//
-//        $subject = new Student("张三");
-//        $proxy = new Proxy($subject);
-//        $proxy->say();
+
+        $subject = new Student("张三");
+        $proxy = new Proxy($subject);
+        $proxy->say();
 
         /**
          * @var $userService UserService
