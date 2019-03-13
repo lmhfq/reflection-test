@@ -32,5 +32,4 @@ class Proxy implements Person
         echo '----------';
         $this->obj->say();
     }
-
 }

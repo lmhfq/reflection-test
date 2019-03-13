@@ -10,7 +10,6 @@ namespace app\components\proxy;
 
 class Student implements Person
 {
-    // 姓名
     private $name;
 
     /**
