@@ -148,8 +148,11 @@ class IndexController extends Controller
     {
         $person = new Person();
         $person->display();
-        // $car = new Car($person);
-        // $car->display();
+
+
+
+         $car = new Car($person);
+         $car->display();
     }
 
     /**

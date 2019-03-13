@@ -12,6 +12,10 @@ abstract class Decorate implements Component
 {
     protected $component;
 
+    /**
+     * 构造注入原组件
+     * @param Component $component
+     */
     public function __construct(Component $component)
     {
         $this->component = $component;
