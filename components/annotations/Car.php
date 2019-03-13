@@ -10,7 +10,8 @@ declare(strict_types=1);
 namespace app\components\annotations;
 
 use app\components\decorator\Component;
-
+use Doctrine\Annotations\Annotation;
+use Doctrine\Annotations\Annotation\Target;
 /**
  * Class Car
  * @Annotation
