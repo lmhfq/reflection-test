@@ -17,7 +17,7 @@ class User
         $this->name = $name;
     }
 
-    protected function getName()
+    private function getName()
     {
         return $this->name;
     }

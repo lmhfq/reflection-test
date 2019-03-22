@@ -12,7 +12,6 @@ use app\components\annotations\Logger;
 use app\components\decorator\Car;
 use app\components\decorator\Person;
 use app\components\dependencies\Application;
-use app\components\dependencies\ClassFactory;
 use app\components\drivers\AnnotationDriver;
 use app\components\factory\MessageFactory;
 use app\components\proxy\Proxy;
@@ -21,7 +20,6 @@ use app\components\strategy\AStrategy;
 use app\components\strategy\BStrategy;
 use app\components\strategy\Context;
 use app\models\Circle;
-use app\models\Point;
 use app\models\Request;
 use app\models\User;
 use app\services\ProductService;
@@ -36,6 +34,8 @@ use yii\web\Controller;
 class IndexController extends Controller
 {
     /**
+     *
+     *
      * @param $action
      * @return bool
      * @throws \ReflectionException
@@ -67,16 +67,18 @@ class IndexController extends Controller
 
         //执行私有方法
         $method = $ref->getMethod('getName');
-        $method->setAccessible(true);
-        $data = $method->invoke($user);
 
-        var_dump($ref->getMethods());
+//        $method->setAccessible(true);
+//        $data = $method->invoke($user);
+
+        var_dump($method);
+        exit;
+//        var_dump($ref->getMethods());
+
+//        $m = new \ReflectionMethod(User::class, 'getName');
 
 
-        $m = new \ReflectionMethod(User::class, 'getName');
-
-
-        var_dump($m);
+        //var_dump($m);
 
     }
 
@@ -140,7 +142,7 @@ class IndexController extends Controller
     }
 
     /**
-     * 装饰器模式
+     * 装饰器模式 
      * @author lmh
      * @\app\components\annotations\Car()
      */
@@ -150,9 +152,8 @@ class IndexController extends Controller
         $person->display();
 
 
-
-         $car = new Car($person);
-         $car->display();
+        $car = new Car($person);
+        $car->display();
     }
 
     /**
@@ -180,7 +181,7 @@ class IndexController extends Controller
          */
 //        $userService = new \app\components\proxy\Client(UserService::class);
 //        var_dump($userService->getUserInfo(104));
-        exit;
+
         try {
             /**
              * @var $productService ProductService
