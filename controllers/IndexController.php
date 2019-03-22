@@ -142,7 +142,7 @@ class IndexController extends Controller
     }
 
     /**
-     * 装饰器模式 
+     * 装饰器模式
      * @author lmh
      * @\app\components\annotations\Car()
      */
