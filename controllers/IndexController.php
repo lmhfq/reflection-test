@@ -68,11 +68,11 @@ class IndexController extends Controller
         //执行私有方法
         $method = $ref->getMethod('getName');
 
-//        $method->setAccessible(true);
-//        $data = $method->invoke($user);
+//       $method->setAccessible(true);
+//       $data = $method->invoke($user);
 
         var_dump($method);
-        exit;
+
 //        var_dump($ref->getMethods());
 
 //        $m = new \ReflectionMethod(User::class, 'getName');
