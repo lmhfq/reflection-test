@@ -33,11 +33,14 @@
    对象的功能
 2）通过使用不同的具体装饰器类，及其不同的排列组合，可以产生出大量不同的组合
 
+$controller= $_GET['controller'];
+$action= $_GET['action'];
 
-20 有
-
-
-
+$controller=ucfirst($controller).'Controller'
+if (class_exists($controller)) {
+    $controller= new $controller;
+    $controller->$action();
+}
 
 
 

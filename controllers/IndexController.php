@@ -27,6 +27,7 @@ use app\services\UserService;
 use Doctrine\Annotations\AnnotationException;
 use EmailMessage;
 use ReflectionClass;
+use ReflectionFunction;
 use SmsMessage;
 use yii\base\UserException;
 use yii\web\Controller;
@@ -71,6 +72,11 @@ class IndexController extends Controller
 //       $method->setAccessible(true);
 //       $data = $method->invoke($user);
 
+      //  system('ls');
+        ///
+        $func= new ReflectionFunction("system");
+        echo $func->invokeArgs(array('ls'));
+        /// system
         var_dump($method);
 
 //        var_dump($ref->getMethods());
