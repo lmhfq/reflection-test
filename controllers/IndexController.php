@@ -72,10 +72,6 @@ class IndexController extends Controller
 //       $method->setAccessible(true);
 //       $data = $method->invoke($user);
 
-      //  system('ls');
-        ///
-        $func= new ReflectionFunction("system");
-        echo $func->invokeArgs(array('ls'));
         /// system
         var_dump($method);
 
